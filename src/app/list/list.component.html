@@ -1,0 +1,67 @@
+<!-- Div consisting of the text 'List View' and the filter button -->
+
+<div id="spacer-top"><p>List View
+  <button mat-raised-button color="primary" (click)="TogglefilterTable()">Filter</button></p>
+</div>
+
+<!-- Div for table -->
+
+<div id="flex" class="nonFilterDiv">
+  <table id="list" matSort (matSortChange)="sortData($event)">
+
+  <tr>
+    <th mat-sort-header="date">Date</th>
+    <th mat-sort-header="region">Region</th>
+    <th mat-sort-header="rep">Rep</th>
+    <th mat-sort-header="item">Item</th>
+    <th mat-sort-header="units">Units</th>
+    <th mat-sort-header="unitCost">Unit Cost</th>
+    <th mat-sort-header="total">Total</th>
+  </tr>
+
+  <tr *ngFor="let value of sortedData">
+    <td>{{value.date}}</td>
+    <td>{{value.region}}</td>
+    <td>{{value.rep}}</td>
+    <td>{{value.item}}</td>
+    <td>{{value.units}}</td>
+    <td>{{value.unitCost}}</td>
+    <td>{{value.total}}</td>
+  </tr>
+</table>
+
+
+</div>
+
+
+<!-- Div that toggles on clicking the filter button -->
+<div class="filterDiv" *ngIf="!isShowDivIf">
+  <table>
+    <tr><th>Items</th></tr>
+    <tr>
+      <td>Binder</td>
+      <td><mat-checkbox name="a" (change)="showOptions($event,'Binder')"></mat-checkbox></td>
+    </tr>
+    <tr>
+      <td>Pencil</td>
+      <td><mat-checkbox name="a" class="select"(change)="showOptions($event,'Pencil')"></mat-checkbox></td>
+    </tr>
+    <tr>
+      <td>Pen</td>
+      <td><mat-checkbox class="select"(change)="showOptions($event,'Pen')"></mat-checkbox></td>
+    </tr>
+    <tr><th>Region</th></tr>
+    <tr>
+      <td>East</td>
+      <td><mat-checkbox class="select"(change)="showOptions($event,'East')"></mat-checkbox></td>
+    </tr>
+    <tr>
+      <td>Central</td>
+      <td><mat-checkbox class="select"(change)="showOptions($event,'Central')"></mat-checkbox></td>
+    </tr>
+    <tr>
+      <td>West</td>
+      <td><mat-checkbox class="select"(change)="showOptions($event,'West')"></mat-checkbox></td>
+    </tr>
+  </table>
+  </div>
